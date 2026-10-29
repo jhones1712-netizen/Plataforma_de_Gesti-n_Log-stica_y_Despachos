@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicio Asignado - Transportador</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1>Servicio Asignado</h1>
+      <div id="datos-servicio" class="datos-servicio hidden">
+        <div class="dato"><strong>Cliente:</strong> <span id="val-cliente"></span></div>
+        <div class="dato"><strong>Origen:</strong> <span id="val-origen"></span></div>
+        <div class="dato"><strong>Destino:</strong> <span id="val-destino"></span></div>
+        <div class="dato"><strong>Precio:</strong> <span id="val-precio"></span></div>
+      </div>
+      <div id="botones-accion">
+        <div class="form-group" id="grupo-select-transportador" style="display:none;">
+          <label for="select-transportador">Selecciona tu nombre</label>
+          <select id="select-transportador" name="select-transportador">
+            <option value="">Selecciona tu nombre</option>
+          </select>
+        </div>
+        <button type="button" class="btn-login btn-aceptar" id="btn-aceptar">Aceptar Servicio</button>
+        <button type="button" class="btn-login btn-camino" id="btn-camino">Voy en Camino</button>
+        <button type="button" class="btn-login btn-entregado" id="btn-entregado">Marcar Entregado</button>
+      </div>
+      <div id="mensaje-estado" class="message success hidden"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/transportador.js"></script>
+</body>
+</html>

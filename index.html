@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Transporte - Inicio de Sesión</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1>Iniciar Sesión</h1>
+      <p class="subtitle">Panel de Administración - La Pintada</p>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" autocomplete="username" required placeholder="admin@example.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-login" id="btn-login">Ingresar</button>
+      </form>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <section id="dashboard-section" class="dashboard hidden">
+    <div class="dashboard-header">
+      <h1>Panel de Despacho</h1>
+      <button type="button" class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3>Servicios Hoy</h3>
+        <div class="stat-value" id="stat-servicios-hoy">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Pendientes</h3>
+        <div class="stat-value" id="stat-pendientes">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Ingresos Estimados</h3>
+        <div class="stat-value" id="stat-ingresos">$0</div>
+      </div>
+    </div>
+
+    <nav class="tabs">
+      <button type="button" class="tab-btn active" data-tab="despacho">Panel de Despacho</button>
+      <button type="button" class="tab-btn" data-tab="transportadores">Transportadores</button>
+    </nav>
+
+    <div class="dashboard-content">
+      <div class="tab-content active" id="tab-despacho">
+        <div class="card">
+        <h2>Registrar Servicio</h2>
+        <form id="form-servicio">
+          <div class="form-group">
+            <label for="cliente-nombre">Nombre del cliente</label>
+            <input type="text" id="cliente-nombre" name="cliente-nombre" required placeholder="Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label for="cliente-telefono">Teléfono del cliente</label>
+            <input type="text" id="cliente-telefono" name="cliente-telefono" required placeholder="3001234567">
+            <small class="field-hint">Solo números, 7 a 15 dígitos</small>
+          </div>
+          <div class="form-group">
+            <label for="servicio-tipo">Tipo de servicio</label>
+<select id="servicio-tipo" name="servicio-tipo">
+  <option value="pedido" selected>Pedido</option>
+</select>
+          </div>
+          <div class="form-group">
+            <label for="servicio-origen">Origen</label>
+            <select id="servicio-origen" name="servicio-origen" required>
+              <option value="">Seleccionar origen</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="servicio-destino">Destino</label>
+            <select id="servicio-destino" name="servicio-destino" required>
+              <option value="" disabled selected>Seleccione un destino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="servicio-descripcion">Dónde recoger y qué llevar</label>
+            <textarea id="servicio-descripcion" name="servicio-descripcion" rows="3" placeholder="Ej: Tienda del parque, 2 bolsas de mercado"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="servicio-precio">Precio (COP)</label>
+            <input type="number" id="servicio-precio" name="servicio-precio" required min="0" placeholder="Precio acordado">
+          </div>
+          <button type="submit" class="btn-save" id="btn-save-servicio">Guardar Servicio</button>
+        </form>
+        <div id="servicio-message" class="message"></div>
+      </div>
+
+      <div class="card table-card">
+        <h2>Servicios Registrados</h2>
+        <div class="table-wrapper">
+          <table id="tabla-servicios">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Tipo</th>
+                <th>Origen / Destino</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-servicios-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+
+      <div class="tab-content hidden" id="tab-transportadores">
+        <div class="card table-card">
+          <h2>Gestión de Transportadores</h2>
+        <form id="form-transportador">
+          <div class="form-group">
+            <label for="tp-nombre">Nombre completo</label>
+            <input type="text" id="tp-nombre" name="tp-nombre" required placeholder="Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label for="tp-telefono">Teléfono</label>
+            <input type="text" id="tp-telefono" name="tp-telefono" required placeholder="3001234567">
+            <small class="field-hint">Solo números, 7 a 15 dígitos</small>
+          </div>
+          <div class="form-group">
+            <label for="tp-vehiculo">Tipo de vehículo</label>
+            <select id="tp-vehiculo" name="tp-vehiculo" required>
+              <option value="moto">Moto</option>
+              <option value="motocarro">Motocarro</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-save" id="btn-save-transportador">Registrar Transportador</button>
+        </form>
+        <div id="transportador-message" class="message"></div>
+        <div class="table-wrapper">
+          <table id="tabla-transportadores">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Vehículo</th>
+                <th>Disponible</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-transportadores-body">
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: Asignar Transportador -->
+  <div id="modal-asignar" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-asignar-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-card">
+      <h3 id="modal-asignar-title">Asignar Transportador</h3>
+      <div class="form-group">
+        <label for="select-transportador">Transportador</label>
+        <select id="select-transportador" required>
+          <option value="">Seleccionar transportador</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="precio-asignado">Precio acordado con el transportador (COP)</label>
+        <input type="number" id="precio-asignado" required min="0" placeholder="Ej: 5000">
+        <small>Puedes modificar el precio si el transportador propone una tarifa diferente.</small>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" id="btn-cancel-asignar">Cancelar</button>
+        <button type="button" class="btn-confirm" id="btn-confirmar-asignar">Confirmar</button>
+      </div>
+      <div id="modal-asignar-message" class="message"></div>
+    </div>
+  </div>
+
+  <!-- Modal: Editar Precio -->
+  <div id="modal-editar-precio" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-editar-precio-title">
+    <div class="modal-backdrop" id="modal-backdrop-editar-precio"></div>
+    <div class="modal-card">
+      <h3 id="modal-editar-precio-title">Editar Precio</h3>
+      <div class="form-group">
+        <label for="precio-editar">Precio (COP)</label>
+        <input type="number" id="precio-editar" name="precio-editar" required min="1">
+      </div>
+      <div id="modal-editar-precio-message" class="message"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" id="btn-cancel-editar-precio">Cancelar</button>
+        <button type="button" class="btn-confirm" id="btn-confirmar-editar-precio">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Difundir a transportadores -->
+  <div id="modal-difundir" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-difundir-title">
+    <div class="modal-backdrop" id="modal-backdrop-difundir">
+      <div class="modal-card">
+        <h3 id="modal-difundir-title">Transportadores Disponibles</h3>
+        <div id="lista-disponibles"></div>
+        <div id="modal-difundir-message" class="message"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btn-cancel-difundir">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
